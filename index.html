@@ -1,0 +1,247 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A site to watch for the new baby dale.">
+    <meta property="og:title" content="Is Baby Dale Born?">
+    <meta property="og:description" content="A site to watch for the new baby dale.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="https://www.thedales.me/babydale">
+    <title>Is Baby Dale Born?</title>
+</head>
+<style>
+    body {
+        background-color: #FCF8E1;
+    }
+
+    .splitflap {
+        position: relative;
+        min-width: 100px;
+        height: 100px;
+        margin: 10px;
+        line-height: 100px;
+        font-size: 100px;
+        font-family: Monospace;
+        text-align: center;
+        color: white;
+    }
+
+    .center {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .top {
+        position: relative;
+        height: 50%;
+        width: 100%;
+        background-color: #3BB6EB;
+        border-radius: 10px 10px 0 0;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    div {
+        perspective: 500px;
+    }
+
+    .bottom {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        margin-top: -50%;
+        border-radius: 10px 10px 10px 10px;
+        z-index: -1;
+        background-color: black;
+        background-image: linear-gradient(rgba(59, 182, 235, 0), #3BB6EB);
+        transform-origin: center;
+    }
+
+    .nextHalf {
+        position: relative;
+        height: 50%;
+        width: 100%;
+        margin-top: -100%;
+        overflow: hidden;
+        border-radius: 10px 10px 0 0;
+        z-index: 2;
+        background-color: black;
+        background-image: linear-gradient(#3BB6EB, rgba(59, 182, 235, 0));
+        transform-origin: bottom;
+    }
+
+    .nextFull {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background-color: #3BB6EB;
+        margin-top: -50%;
+        border-radius: 10px 10px 10px 10px;
+        z-index: -3;
+    }
+
+    .flip1 {
+        animation: flip1 ease-in 1;
+        animation-duration: 1s;
+    }
+
+    .flip2 {
+        animation: flip2 ease-out 1;
+        animation-duration: 1s;
+    }
+
+    @keyframes flip1 {
+        0% {
+            transform: rotateX(0deg);
+            background-color: #3BB6EB;
+        }
+
+        50% {
+            transform: rotateX(90deg);
+            background-color: black;
+        }
+
+        100% {
+            transform: rotateX(90deg);
+        }
+    }
+
+    @keyframes flip2 {
+        0% {
+            transform: rotateX(-90deg);
+        }
+
+        50% {
+            transform: rotateX(-90deg);
+        }
+
+        100% {
+            transform: rotateX(0deg);
+            background-color: #3BB6EB;
+        }
+    }
+</style>
+
+<body>
+    <h1>Is Baby Dale Born?</h1>
+    <div class="center">
+    </div>
+</body>
+<script>
+    // Set up flaps ////////////////////////////////////////////
+    speed = .2; // seconds
+    beginStr = "Born Yet?".toUpperCase().split("");
+    endStr = "Not Yet!".toUpperCase().split("");
+    // A-Z, 0-9, spaces only
+
+    amountOfFlaps = (beginStr.length >= endStr.length) ? beginStr.length : endStr.length;
+
+    div = document.querySelector(".center");
+    html = "";
+    for (var x = 0; x < amountOfFlaps; x++) {
+        html += '<div class=splitflap><div class="top"></div><div class="bottom"></div><div class="nextHalf"></div><div class="nextFull"></div></div>';
+    }
+
+    div.innerHTML = html;
+
+
+    // Set up more stuff ///////////////////////////////////////
+    a1 = document.querySelectorAll(".top");
+    a2 = document.querySelectorAll(".bottom");
+    b1 = document.querySelectorAll(".nextFull");
+    b2 = document.querySelectorAll(".nextHalf");
+
+    for (var x = 0; x < a1.length; x++) {
+        a2[x].style.animationDuration = speed + "s";
+        b2[x].style.animationDuration = speed + "s";
+    }
+
+
+    // And even more ///////////////////////////////////////////
+    char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+        'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '?', '!', ' '];
+
+    strCount = [], flag = [];
+
+    for (var x = 0; x < amountOfFlaps; x++) {
+
+        if (beginStr.length != amountOfFlaps) {
+            for (var x = 0; x < amountOfFlaps - beginStr.length; x++) {
+                beginStr.push(" ");
+            }
+        }
+        else if (endStr.length != amountOfFlaps) {
+            for (var x = 0; x < amountOfFlaps - endStr.length; x++) {
+                endStr.push(" ");
+            }
+        }
+    }
+    for (var x = 0; x < amountOfFlaps; x++) {
+        strCount[x] = char.indexOf(beginStr[x]);
+        flag[x] = false, flag2 = true;
+    }
+
+    // Flip them flaps /////////////////////////////////////////
+    setInterval(function () {
+        for (var x = 0; x < amountOfFlaps; x++) {
+
+            if (b1[x].innerHTML == endStr[x]) dontFlipIt(x);
+            else flipIt(x);
+
+            if (flag.every(function (e) {
+                return e
+            }) && flag2) flag2 = false, changeDestination();
+        }
+
+    }, speed * 1000);
+
+
+    ////////////////////////////////////////////////////////////
+    // Flap flipping functions /////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    function flipIt(x) {
+        a1[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+        a2[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+        b1[x].innerHTML = char[strCount[x]];
+        b2[x].innerHTML = char[strCount[x]];
+
+        a2[x].classList.remove("flip1");
+        a2[x].offsetWidth = a2[x].offsetWidth;
+        a2[x].classList.add("flip1");
+        b2[x].classList.remove("flip2");
+        b2[x].offsetWidth = b2[x].offsetWidth;
+        b2[x].classList.add("flip2");
+
+        if (strCount[x] > char.length - 2) strCount[x] = 0;
+        else strCount[x]++;
+    }
+
+    function dontFlipIt(x) {
+        flag[x] = true;
+        a2[x].classList.remove("flip2");
+        a2[x].style.backgroundColor = "#3BB6eB";
+        b2[x].style.backgroundColor = "#3BB6eB";
+        a1[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+        a2[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+    }
+
+    function changeDestination() {
+        setTimeout(function () {
+            flag.fill(false);
+            flag2 = true;
+
+            var tempArr = endStr.slice();
+            endStr = beginStr.slice();
+            beginStr = tempArr.slice();
+        }, 3000);
+    }
+</script>
+
+</html>
