@@ -47,7 +47,7 @@
         z-index: 0;
     }
 
-    div {
+    div.center {
         perspective: 500px;
     }
 
@@ -142,67 +142,60 @@
             opacity: 1;
         }
 
-        20% {
+        10% {
             left: 0;
             opacity: 1;
         }
 
-        21% {
+        11% {
+            opacity: 0;
+        }
+
+        12% {
+            left: -400px;
             opacity: 0;
         }
 
         24% {
+            left: -800px;
             opacity: 0;
         }
 
-        25% {
-            left: -768px;
-            opacity: 1;
-        }
-
-        45% {
-            left: -768px;
-            opacity: 1;
+        36% {
+            left: -1200px;
+            opacity: 0;
         }
 
         46% {
-            opacity: 0;
+            opacity: 1;
         }
 
         48% {
+            left: -1600px;
             opacity: 0;
         }
 
-        50% {
-            left: -1536px;
-            opacity: 1;
-        }
-
-        70% {
-            left: -1536px;
-            opacity: 1;
+        61% {
+            left: -2000px;
+            opacity: 0;
         }
 
         72% {
+            left: -2400px;
             opacity: 0;
         }
 
-        74% {
+        82% {
+            opacity: 1;
+        }
+
+        83% {
+            left: -2800px;
             opacity: 0;
         }
 
-        75% {
-            left: -2304px;
-            opacity: 1;
-        }
-
-        95% {
-            left: -2304px;
-            opacity: 1;
-        }
-
-        97% {
-            left: -2304px;
+        91% {
+            left: -3200px;
             opacity: 0;
         }
 
@@ -223,26 +216,26 @@
         height: 533px;
     }
 
-    div#sider img {
+    div#slider img {
         width: 400px;
         height: 533px;
         float: left;
     }
 
-    div#css3slider {
+    div#slider {
         position: absolute;
-        width: 3900px;
+        width: 3200px;
         animation-name: slider;
         animation-duration: 15s;
         animation-timing-function: ease-in-out;
         animation-iteration-count: infinite;
     }
 
-    div#css3slider:hover {
+    div#slider:hover {
         animation-play-state: paused;
     }
 
-    div#css3slider img {
+    div#slider img {
         float: right;
     }
 
@@ -267,14 +260,15 @@
     <div class="center">
     </div>
     <div id="slidercontainer">
-        <div id="css3slider">
-            <img src="https://tom.imgix.net/heather_16.jpg?w=400&auto=format" alt="16">
-            <img src="https://tom.imgix.net/heather_20.jpg?w=400&auto=format" alt="20">
-            <img src="https://tom.imgix.net/heather_24.jpg?w=400&auto=format" alt="24">
-            <img src="https://tom.imgix.net/heather_28.jpg?w=400&auto=format" alt="28">
-            <img src="https://tom.imgix.net/heather_32.jpg?w=400&auto=format" alt="32">
-            <img src="https://tom.imgix.net/heather_36.jpg?w=400&auto=format" alt="36">
-            <img src="https://tom.imgix.net/heather_37.jpg?w=400&auto=format" alt="37">
+        <div id="slider">
+            <img src="https://tom.imgix.net/heather_38.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="38">
+            <img src="https://tom.imgix.net/heather_37.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="37">
+            <img src="https://tom.imgix.net/heather_36.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="36">
+            <img src="https://tom.imgix.net/heather_32.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="32">
+            <img src="https://tom.imgix.net/heather_28.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="28">
+            <img src="https://tom.imgix.net/heather_24.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="24">
+            <img src="https://tom.imgix.net/heather_20.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="20">
+            <img src="https://tom.imgix.net/heather_16.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="16">
         </div>
     </div>
 </body>
